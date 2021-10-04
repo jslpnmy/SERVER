@@ -18,7 +18,7 @@ def mainscreen():
 
 
 @api_view(['POST'])
-def signup(request): #회원가입
+def signup(request): #회원가입, request = {nickname, email, password}
     if request.method == 'POST':
         serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid():
@@ -43,7 +43,7 @@ def signup(request): #회원가입
 
 
 @api_view(['GET'])
-def LogIn(request):
+def LogIn(request): #request = {email, password}
     if Profile.objects.filter(email=request.email, password=request.password).exist(): #해당 정보의 user가 존재하는지 확인
         return Response(status={'success':'true', 'token':Profile.objects.filter(email=request.email, password=request.password).value()['token']}) #존재할 때
     else:
@@ -51,7 +51,7 @@ def LogIn(request):
 
 
 @api_view(['POST', 'GET'])
-def posting(request):
+def posting(request): #request = {nickname, token, content, (image)}
     if request.method == 'POST':
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
@@ -90,7 +90,7 @@ def posting(request):
 
 #token으로 user 찾기
 @api_view(['GET'])
-def trace_user(request):
+def trace_user(request): #request={token}
     if Profile.objects.filter(token=request.data['token']).exist():
         return Response(status={'success':'true', 'nickname':Profile.objects.filter(token=request.data['token']).value()['nickname'], 'token':request.data['token']})
     else:
