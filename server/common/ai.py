@@ -4,9 +4,9 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import json
 
-model = tf.keras.models.load_model('C:\projects\hackathon\server\common\my_model.h5')
+model = tf.keras.models.load_model('C:\projects\hackathon\server\common\my_model.h5') #주소는 본인 파일 위치에 맞춰 바꿀 것
 okt = Okt()
-with open('C:/projects/hackathon/server/common/tokenizer.json') as f:
+with open('C:/projects/hackathon/server/common/tokenizer.json') as f: #주소는 본인 파일 위치에 맞춰 바꿀 것
     data = json.load(f)
     tokenizer = tf.keras.preprocessing.text.tokenizer_from_json(data)
 
