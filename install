@@ -3,3 +3,5 @@ pip install '''''''
 django
 djangorestframework
 pillow
+tensorflow
+konlpy
