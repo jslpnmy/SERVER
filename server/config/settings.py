@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'sqlite3.db',
     }
 }
 
@@ -108,6 +108,16 @@ REST_FRAMEWORK = {
 }
 
 DEFAULT_AUTO_FIELD= 'django.db.models.AutoField'
+
+DEFAULT_PARSER_CLASSES: (
+    'rest_framework.parsers.JSONParser',
+    'rest_framework.parsers.FormParser',
+    'rest_framework.parsers.MultiPartParser',
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
